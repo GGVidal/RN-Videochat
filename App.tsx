@@ -24,7 +24,9 @@ import MicOff from './src/assets/MicOff';
 import VideoOn from './src/assets/VideoOn';
 import VideoOff from './src/assets/VideoOff';
 import CameraSwitch from './src/assets/CameraSwitch';
-import IconContainer from './src/components/IconContainer';
+import IconContainer from './src/components/Button';
+import {CallEndButton} from './src/components/CallEndButton';
+import {MicButton} from './src/components/MicButton';
 // import InCallManager from 'react-native-incall-manager';
 
 export default function App({}) {
@@ -476,32 +478,8 @@ export default function App({}) {
             flexDirection: 'row',
             justifyContent: 'space-evenly',
           }}>
-          <IconContainer
-            backgroundColor={'red'}
-            onPress={() => {
-              leave();
-            }}
-            Icon={() => {
-              return <CallEnd height={26} width={26} fill="#FFF" />;
-            }}
-          />
-          <IconContainer
-            style={{
-              borderWidth: 1.5,
-              borderColor: '#2B3034',
-            }}
-            backgroundColor={!localMicOn ? '#fff' : 'transparent'}
-            onPress={() => {
-              toggleMic();
-            }}
-            Icon={() => {
-              return localMicOn ? (
-                <MicOn height={24} width={24} fill="#FFF" />
-              ) : (
-                <MicOff height={28} width={28} fill="#1D2939" />
-              );
-            }}
-          />
+          <CallEndButton onPress={leave} />
+          <MicButton onPress={toggleMic} localMicOn={localMicOn} />
           <IconContainer
             style={{
               borderWidth: 1.5,
