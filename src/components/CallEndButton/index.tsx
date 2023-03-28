@@ -6,7 +6,6 @@ import {CallEndButtonProps} from './types';
 export const CallEndButton = ({onPress}: CallEndButtonProps) => {
   return (
     <Container
-      backgroundColor="red"
       onPress={onPress}
       Icon={<CallEnd height={26} width={26} fill="#FFF" />}
     />

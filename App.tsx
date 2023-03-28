@@ -19,14 +19,10 @@ import {
 } from 'react-native-webrtc';
 import CallEnd from './src/assets/CallEnd';
 import CallAnswer from './src/assets/CallAnswer';
-import MicOn from './src/assets/MicOn';
-import MicOff from './src/assets/MicOff';
-import VideoOn from './src/assets/VideoOn';
-import VideoOff from './src/assets/VideoOff';
-import CameraSwitch from './src/assets/CameraSwitch';
-import IconContainer from './src/components/Button';
 import {CallEndButton} from './src/components/CallEndButton';
 import {MicButton} from './src/components/MicButton';
+import {VideoButton} from './src/components/VideoButton';
+import {SwitchCameraButton} from './src/components/SwitchCameraButton';
 // import InCallManager from 'react-native-incall-manager';
 
 export default function App({}) {
@@ -480,36 +476,8 @@ export default function App({}) {
           }}>
           <CallEndButton onPress={leave} />
           <MicButton onPress={toggleMic} localMicOn={localMicOn} />
-          <IconContainer
-            style={{
-              borderWidth: 1.5,
-              borderColor: '#2B3034',
-            }}
-            backgroundColor={!localWebcamOn ? '#fff' : 'transparent'}
-            onPress={() => {
-              toggleCamera();
-            }}
-            Icon={() => {
-              return localWebcamOn ? (
-                <VideoOn height={24} width={24} fill="#FFF" />
-              ) : (
-                <VideoOff height={36} width={36} fill="#1D2939" />
-              );
-            }}
-          />
-          <IconContainer
-            style={{
-              borderWidth: 1.5,
-              borderColor: '#2B3034',
-            }}
-            backgroundColor={'transparent'}
-            onPress={() => {
-              switchCamera();
-            }}
-            Icon={() => {
-              return <CameraSwitch height={24} width={24} fill="#FFF" />;
-            }}
-          />
+          <VideoButton localVideo={localWebcamOn} onPress={toggleCamera} />
+          <SwitchCameraButton onPress={switchCamera} />
         </View>
       </View>
     );
