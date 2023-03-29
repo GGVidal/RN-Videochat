@@ -1,19 +1,9 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {
-  Platform,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
-  Keyboard,
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
-import TextInputContainer from './src/components/TextInputContainer';
+import {View, Text, TouchableOpacity} from 'react-native';
 import SocketIOClient from 'socket.io-client';
 import {
   mediaDevices,
   RTCPeerConnection,
-  RTCView,
   RTCIceCandidate,
   RTCSessionDescription,
 } from 'react-native-webrtc';
@@ -24,6 +14,7 @@ import {MicButton} from './src/components/MicButton';
 import {VideoButton} from './src/components/VideoButton';
 import {SwitchCameraButton} from './src/components/SwitchCameraButton';
 import {Join} from './src/screens/Join';
+import {WebrtcRoom} from './src/screens/WebrtcRoom';
 // import InCallManager from 'react-native-incall-manager';
 
 export default function App({}) {
@@ -348,43 +339,12 @@ export default function App({}) {
 
   const WebrtcRoomScreen = () => {
     return (
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: '#050A0E',
-          paddingHorizontal: 12,
-          paddingVertical: 12,
-        }}>
-        {localStream ? (
-          <RTCView
-            objectFit={'cover'}
-            style={{flex: 1, backgroundColor: '#050A0E'}}
-            streamURL={localStream.toURL()}
-          />
-        ) : null}
-        {remoteStream ? (
-          <RTCView
-            objectFit={'cover'}
-            style={{
-              flex: 1,
-              backgroundColor: '#050A0E',
-              marginTop: 8,
-            }}
-            streamURL={remoteStream.toURL()}
-          />
-        ) : null}
-        <View
-          style={{
-            marginVertical: 12,
-            flexDirection: 'row',
-            justifyContent: 'space-evenly',
-          }}>
-          <CallEndButton onPress={leave} />
-          <MicButton onPress={toggleMic} localMicOn={localMicOn} />
-          <VideoButton localVideo={localWebcamOn} onPress={toggleCamera} />
-          <SwitchCameraButton onPress={switchCamera} />
-        </View>
-      </View>
+      <WebrtcRoom localStream={localStream} remoteStream={remoteStream}>
+        <CallEndButton onPress={leave} />
+        <MicButton onPress={toggleMic} localMicOn={localMicOn} />
+        <VideoButton localVideo={localWebcamOn} onPress={toggleCamera} />
+        <SwitchCameraButton onPress={switchCamera} />
+      </WebrtcRoom>
     );
   };
 
