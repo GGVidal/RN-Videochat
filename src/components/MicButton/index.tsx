@@ -6,16 +6,9 @@ import {MicProps} from './types';
 
 export const MicButton = ({onPress, localMicOn}: MicProps) => {
   return (
-    <Container
-      localMicOn={localMicOn}
-      onPress={onPress}
-      Icon={
-        localMicOn ? (
-          <MicOn height={24} width={24} fill="#FFF" />
-        ) : (
-          <MicOff height={28} width={28} fill="#1D2939" />
-        )
-      }
-    />
+    <Container localMicOn={localMicOn} onPress={onPress}>
+      {localMicOn && <MicOn height={24} width={24} fill="#FFF" />}
+      {!localMicOn && <MicOff height={28} width={28} fill="#1D2939" />}
+    </Container>
   );
 };
