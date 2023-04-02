@@ -309,7 +309,7 @@ export default function App({}) {
             setType('OUTGOING_CALL');
             processCall();
           }}
-          setValue={text => {
+          onChange={text => {
             otherUserId.current = text;
             console.log('TEST', otherUserId.current);
           }}

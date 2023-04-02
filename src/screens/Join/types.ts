@@ -1,6 +1,6 @@
 export interface JoinProps {
   callerId: string;
-  value: string | null;
-  setValue: (text: string) => void;
+  value: string;
+  onChange: (text: string) => void;
   onPressCall: () => void;
 }

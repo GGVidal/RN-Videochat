@@ -1,5 +1,5 @@
 import React from 'react';
-import TextInputContainer from '../../components/TextInputContainer';
+import {InputCallerId} from './components/InputCallerId';
 import {
   CallButton,
   CallButtonText,
@@ -14,7 +14,7 @@ import {
 } from './style';
 import {JoinProps} from './types';
 
-export const Join = ({callerId, value, setValue, onPressCall}: JoinProps) => {
+export const Join = ({callerId, value, onChange, onPressCall}: JoinProps) => {
   return (
     <Container>
       <DismissKeyboard>
@@ -27,11 +27,10 @@ export const Join = ({callerId, value, setValue, onPressCall}: JoinProps) => {
           </Wrapper>
           <InputWrapper>
             <InputTitle>Enter call id of another user</InputTitle>
-            <TextInputContainer
+            <InputCallerId
               placeholder="Enter Caller ID"
               value={value}
-              keyboardType={'number-pad'}
-              setValue={setValue}
+              onChangeText={onChange}
             />
             <CallButton onPress={onPressCall}>
               <CallButtonText>Call now</CallButtonText>
