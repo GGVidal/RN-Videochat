@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {Button} from '../Button';
+import {Button} from '../IconButton';
 
 export const Container = styled(Button).attrs({
   backgroundColor: '#f80404',
