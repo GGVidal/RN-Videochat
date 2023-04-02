@@ -5,7 +5,7 @@ export const Container = styled.KeyboardAvoidingView`
   flex: 1;
   background-color: #050a0e;
   justify-content: center;
-  padding-horizontal: 42;
+  padding-horizontal: 42px;
   ${`
     behavior: ${Platform.OS === 'ios' ? 'padding' : 'height'};
   `}

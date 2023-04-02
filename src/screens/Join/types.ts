@@ -1,8 +1,6 @@
-import React from 'react';
-
 export interface JoinProps {
   callerId: string;
-  value: React.MutableRefObject<null>;
+  value: string | null;
   setValue: (text: string) => void;
   onPressCall: () => void;
 }
