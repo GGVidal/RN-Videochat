@@ -8,13 +8,13 @@ import {
   RTCSessionDescription,
 } from 'react-native-webrtc';
 import CallEnd from './src/assets/CallEnd';
-import CallAnswer from './src/assets/CallAnswer';
 import {CallEndButton} from './src/components/CallEndButton';
 import {MicButton} from './src/components/MicButton';
 import {VideoButton} from './src/components/VideoButton';
 import {SwitchCameraButton} from './src/components/SwitchCameraButton';
 import {Join} from './src/screens/Join';
 import {WebrtcRoom} from './src/screens/WebrtcRoom';
+import {IncomingCall} from './src/screens/IncomingCall';
 // import InCallManager from 'react-native-incall-manager';
 
 export default function App({}) {
@@ -262,55 +262,6 @@ export default function App({}) {
     );
   };
 
-  const IncomingCallScreen = () => {
-    return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'space-around',
-          backgroundColor: '#050A0E',
-        }}>
-        <View
-          style={{
-            padding: 35,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: 14,
-          }}>
-          <Text
-            style={{
-              fontSize: 36,
-              marginTop: 12,
-              color: '#ffff',
-            }}>
-            {otherUserId.current} is calling..
-          </Text>
-        </View>
-        <View
-          style={{
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
-          <TouchableOpacity
-            onPress={() => {
-              processAccept();
-              setType('WEBRTC_ROOM');
-            }}
-            style={{
-              backgroundColor: 'green',
-              borderRadius: 30,
-              height: 60,
-              aspectRatio: 1,
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}>
-            <CallAnswer height={28} fill={'#fff'} />
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  };
-
   function switchCamera() {
     localStream.getVideoTracks().forEach(track => {
       track._switchCamera();
@@ -365,7 +316,15 @@ export default function App({}) {
         />
       );
     case 'INCOMING_CALL':
-      return IncomingCallScreen();
+      return (
+        <IncomingCall
+          otherUserId={otherUserId.current}
+          onPress={() => {
+            processAccept();
+            setType('WEBRTC_ROOM');
+          }}
+        />
+      );
     case 'OUTGOING_CALL':
       return OutgoingCallScreen();
     case 'WEBRTC_ROOM':
