@@ -7,4 +7,6 @@ export const ButtonStyled = styled.TouchableOpacity<ButtonProps>`
   aspect-ratio: 1;
   justify-content: center;
   align-items: center;
+  background-color: ${({backgroundColor}) => backgroundColor ?? null};
+  padding: 20px;
 `;
